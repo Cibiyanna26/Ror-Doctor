@@ -65,6 +65,13 @@ class DashboardScreen extends StatelessWidget {
               },
             ),
             ListTile(
+              title: const Text('Appointments'),
+              leading: const Icon(Iconsax.calendar),
+              onTap: () {
+                context.push("/appointments");
+              },
+            ),
+            ListTile(
               title: const Text('Logout'),
               leading: const Icon(Iconsax.logout),
               onTap: () {

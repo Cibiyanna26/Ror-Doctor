@@ -13,12 +13,11 @@ class ApiRepository {
 
   final Dio dio = Dio();
 
-  static const String _iP = '172.17.12.83';
-  static const String _baseUrl = 'http://$_iP:8000/api';
-  static const String _patientLogin = '/users/patient/login';
-  static const String _doctorLogin = '/doctor/login/';
-  static const String _patientRegister = '/users/patient/register';
-  static const String _doctorRegister = '/doctor/register/';
+  // static const String _iP = '172.17.12.83';
+  static const String _baseUrl =
+      'https://ror-django-backend-7pxm.onrender.com/api';
+  static const String _doctorLogin = '/users/doctor/login';
+  static const String _doctorRegister = '/users/doctor/register';
   static const String _checkNavigation = '/classify/v1/check-navigation/';
   static const String _texttoText = '/classify/v1/text-voice-generator/';
 
@@ -26,33 +25,10 @@ class ApiRepository {
     dio.options.baseUrl = _baseUrl;
   }
 
-  Future<Map<String, dynamic>> patientLogin(
-      Map<String, dynamic> patientData) async {
-    try {
-      final response = await dio.post(_patientLogin, data: patientData);
-      return response.data;
-    } on DioException catch (e) {
-      return _handleDioError(e);
-    }
-  }
-
   Future<Map<String, dynamic>> doctorLogin(
-      String email, String password) async {
+      Map<String, dynamic> doctorData) async {
     try {
-      final response = await dio.post(_doctorLogin, data: {
-        'email': email,
-        'password': password,
-      });
-      return response.data;
-    } on DioException catch (e) {
-      return _handleDioError(e);
-    }
-  }
-
-  Future<Map<String, dynamic>> patientRegister(
-      Map<String, dynamic> patientData) async {
-    try {
-      final response = await dio.post(_patientRegister, data: patientData);
+      final response = await dio.post(_doctorLogin, data: doctorData);
       return response.data;
     } on DioException catch (e) {
       return _handleDioError(e);

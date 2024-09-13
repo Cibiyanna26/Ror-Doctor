@@ -24,7 +24,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   void _register() async {
     final data =
-        await authRepository.patientRegister({"phonenumber": _phoneNumber});
+        await authRepository.doctorRegister({"phonenumber": _phoneNumber});
     await prefs.setString("phoneNumber", _phoneNumber);
     await prefs.setString("token", data["token"]);
 

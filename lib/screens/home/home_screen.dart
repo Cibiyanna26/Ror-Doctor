@@ -10,6 +10,7 @@ import 'package:reach_out_rural/utils/size_config.dart';
 import 'package:reach_out_rural/widgets/custom_bottom_navbar.dart';
 import 'package:speech_to_text/speech_recognition_result.dart';
 import 'package:speech_to_text/speech_to_text.dart';
+import 'package:reach_out_rural/repository/api/api_repository.dart';
 
 const List<Widget> _screens = <Widget>[
   DashboardScreen(),
@@ -53,24 +54,34 @@ class _HomeScreenState extends State<HomeScreen> {
     }
   }
 
-  void _onSpeechResult(SpeechRecognitionResult result) {
+  void _onSpeechResult(SpeechRecognitionResult result) async {
     final command = result.recognizedWords.toLowerCase();
+    final authRepository = ApiRepository();
+    // final SharedPreferencesHelper prefs = SharedPreferencesHelper();
     log(command);
-    if (command.contains('home')) {
+    final data =
+        await authRepository.checkNavigation({"query": command, "lang": "en"});
+
+    final category = data["category"];
+
+    if (!mounted) return;
+    // log(command);
+
+    if (category == "book_appointment") {
       setState(() {
         _currentIndex = 0; // Navigate to DashboardScreen
       });
-    } else if (command.contains('chat')) {
+    } else if (category == 'medibot') {
       setState(() {
         _currentIndex = 1; // Navigate to ChatBotScreen
       });
-    } else if (command.contains('scan') || command.contains('wound')) {
+    } else if (category == 'mediscanner') {
       setState(() {
-        _currentIndex = 2; // Navigate to ScannerPage
+        _currentIndex = 2; // Navigate to ScannerScreen
       });
-    } else if (command.contains('prescription')) {
+    } else if (category == 'upload_prescription') {
       setState(() {
-        _currentIndex = 3; // Navigate to PrescriptionPage
+        _currentIndex = 3; // Navigate to PrescriptionScreen
       });
     }
   }

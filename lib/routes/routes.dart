@@ -15,6 +15,7 @@ import 'package:reach_out_rural/screens/profile/profile_screen.dart';
 import 'package:reach_out_rural/screens/register/register_screen.dart';
 import 'package:reach_out_rural/screens/scanner/scanner_screen.dart';
 import 'package:reach_out_rural/screens/search/search_screen.dart';
+import 'package:reach_out_rural/screens/appointments/appointment_screen.dart';
 
 final router = GoRouter(
   initialLocation: "/onboarding",
@@ -98,6 +99,13 @@ final router = GoRouter(
                 location: obj.location,
                 onSave: obj.onSave));
       },
+    ),
+    GoRoute(
+      path: '/appointments',
+      pageBuilder: (context, state) => _buildPageWithDefaultTransition(
+          context: context,
+          state: state,
+          child: const DoctorAppointmentScreen()),
     )
   ],
   errorPageBuilder: (context, state) => _buildPageWithDefaultTransition(

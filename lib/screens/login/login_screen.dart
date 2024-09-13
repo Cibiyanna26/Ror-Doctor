@@ -24,7 +24,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   void _login() async {
     final data =
-        await authRepository.patientLogin({"phonenumber": _phoneNumber});
+        await authRepository.doctorLogin({"phonenumber": _phoneNumber});
     await prefs.setString("phoneNumber", _phoneNumber);
     await prefs.setString("token", data["token"]);
 
