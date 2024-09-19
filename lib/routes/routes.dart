@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:reach_out_rural/models/community.dart';
+import 'package:reach_out_rural/models/doctor.dart';
 import 'package:reach_out_rural/models/edit_profile_objects.dart';
 import 'package:reach_out_rural/screens/chatbot/chat_bot_screen.dart';
+import 'package:reach_out_rural/screens/community/specialized_community.dart';
 import 'package:reach_out_rural/screens/dashboard/dashboard_screen.dart';
 import 'package:reach_out_rural/screens/error/error_screen.dart';
 import 'package:reach_out_rural/screens/home/home_screen.dart';
@@ -77,6 +80,18 @@ final router = GoRouter(
             context: context, state: state, child: const SearchScreen());
       },
     ),
+    GoRoute(
+        path: "/specialized-community",
+        pageBuilder: (context, state) {
+          final dstate = state.extra as Map<String, dynamic>;
+          final community = dstate["community"]! as Community;
+          final doctors = dstate["doctors"]! as List<Doctor>;
+          return _buildPageWithDefaultTransition(
+              context: context,
+              state: state,
+              child:
+                  SpecializedCommunity(community: community, doctors: doctors));
+        }),
     GoRoute(
       path: "/profile",
       pageBuilder: (context, state) {

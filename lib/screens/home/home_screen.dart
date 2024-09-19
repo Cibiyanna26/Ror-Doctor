@@ -3,9 +3,11 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:reach_out_rural/constants/constants.dart';
 import 'package:reach_out_rural/screens/chatbot/chat_bot_screen.dart';
+import 'package:reach_out_rural/screens/community/community_screen.dart';
 import 'package:reach_out_rural/screens/dashboard/dashboard_screen.dart';
 import 'package:reach_out_rural/screens/prescription/prescription_screen.dart';
 import 'package:reach_out_rural/screens/scanner/scanner_screen.dart';
+import 'package:reach_out_rural/screens/schedule/schedule_screen.dart';
 import 'package:reach_out_rural/utils/size_config.dart';
 import 'package:reach_out_rural/widgets/custom_bottom_navbar.dart';
 import 'package:speech_to_text/speech_recognition_result.dart';
@@ -13,10 +15,10 @@ import 'package:speech_to_text/speech_to_text.dart';
 import 'package:reach_out_rural/repository/api/api_repository.dart';
 
 const List<Widget> _screens = <Widget>[
-  DashboardScreen(),
+  ScheduleScreen(),
   ChatBotScreen(),
   ScannerScreen(),
-  PrescriptionScreen()
+  CommunityScreen()
 ];
 
 class HomeScreen extends StatefulWidget {

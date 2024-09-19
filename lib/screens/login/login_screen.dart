@@ -26,7 +26,7 @@ class _LoginScreenState extends State<LoginScreen> {
     final data =
         await authRepository.doctorLogin({"phonenumber": _phoneNumber});
     await prefs.setString("phoneNumber", _phoneNumber);
-    await prefs.setString("token", data["token"]);
+    // await prefs.setString("token", data["token"]);
 
     if (!mounted) return;
 
